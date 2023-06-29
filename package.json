@@ -1,5 +1,5 @@
 {
-  "name": "typescript-library-template",
+  "name": "ecalp-ts-data-structures",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -20,15 +20,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/brianplace/typescript-library-template.git"
+    "url": "git+https://github.com/brianplace/ecalp-ts-data-structures"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/brianplace/typescript-library-template/issues"
+    "url": "https://github.com/brianplace/ecalp-ts-data-structures/issues"
   },
-  "homepage": "https://github.com/brianplace/typescript-library-template#readme",
+  "homepage": "https://github.com/brianplace/ecalp-ts-data-structures#readme",
   "devDependencies": {
     "@types/chai": "^4.2.14",
     "@types/mocha": "^8.2.0",
