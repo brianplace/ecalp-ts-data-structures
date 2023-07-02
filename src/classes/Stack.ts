@@ -19,6 +19,14 @@ export default class Stack<T> implements IStack<T> {
 
         throw new Error();
     }
+
+    public Peek(): T | undefined {
+        if (this.TopMostNode !== undefined) {
+            return this.TopMostNode.Value;
+        }
+        
+        return undefined;
+    }
 }
 
 class StackNode<T> {
