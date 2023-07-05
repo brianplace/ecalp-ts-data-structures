@@ -80,6 +80,81 @@ describe('Stack tests', () => {
         });
     });
 
+    describe('tryPop tests', () => {
+        it('after pushing item onto new stack, tryPop returns same item', () => {
+            const stack: IStack<number> = new Stack<number>();
+            const valueToAdd: number = 1;
+            stack.Push(valueToAdd);
+
+            const returnOption = stack.TryPop();
+            expect(returnOption.HasValue()).to.be.true;
+            expect(returnOption.GetValue()).to.equal(valueToAdd);
+        });
+
+        it('calling tryPop on new stack returns Optional with HasValue equal to false', () => {
+            const stack: IStack<number> = new Stack<number>();
+            const returnOption = stack.TryPop();
+            expect(returnOption.HasValue()).to.be.false;
+        });
+
+        it('can call tryPop however many times push is called', () => {
+            const stack: IStack<number> = new Stack<number>();
+            const testArray: number[] = [1, 2, 3, 4, 5];
+            const lengthOfArray: number = testArray.length;
+    
+            for (let index = 0; index < lengthOfArray; index++) {
+                stack.Push(testArray[index]);
+            }
+    
+            let popCount: number = 0;
+    
+            let keepCallingPop = true;
+    
+            while (keepCallingPop) {
+                const returnOption = stack.TryPop();
+                
+                if (returnOption.HasValue()) {
+                    popCount++
+                } else {
+                    keepCallingPop = false;
+                }            
+            }
+    
+            expect(lengthOfArray).to.equal(popCount);
+        });
+
+        it('calling tryPop on array returns an array in reverse order', () => {
+            const stack: IStack<number> = new Stack<number>();
+            const testArray: number[] = [1, 2, 3, 4, 5];
+            const lengthOfArray: number = testArray.length;
+    
+            for (let index = 0; index < lengthOfArray; index++) {
+                stack.Push(testArray[index]);
+            }
+    
+            const returnArray: number[] = []
+    
+            let keepCallingPop = true;
+    
+            while (keepCallingPop) {
+                const returnOption = stack.TryPop();
+
+                if (returnOption.HasValue()) {
+                    returnArray.push(returnOption.GetValue());
+                } else {
+                    keepCallingPop = false;
+                }
+            }
+    
+            expect(lengthOfArray).to.equal(returnArray.length);
+    
+            for (let index = 0; index < lengthOfArray; index++) {
+                expect(testArray[index]).to.equal(returnArray[(lengthOfArray - 1) - index]);
+            }
+    
+        });
+    });
+
     describe('peek tests', () => {
         it('calling peek on empty stack returns undefined', () => {
             const stack: IStack<number> = new Stack<number>();

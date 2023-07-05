@@ -1,4 +1,5 @@
 import IStack from '../interfaces/IStack';
+import Optional from './Optional';
 
 export default class Stack<T> implements IStack<T> {
     private TopMostNode: StackNode<T> | undefined;
@@ -26,6 +27,18 @@ export default class Stack<T> implements IStack<T> {
         }
         
         return undefined;
+    }
+
+    public TryPop(): Optional<T> {
+        let optional: Optional<T>;
+
+        try {
+            optional = new Optional<T>(this.Pop());
+        } catch {
+            optional = new Optional<T>();
+        }
+
+        return optional;
     }
 }
 
